@@ -16,12 +16,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("hello world")
+    this.getPhotosURLs();
   }
 
   getPhotosURLs() {
     $.get('/api/photos', (data) => {
-      console.log(data);
+      this.setState({photos: data});
     })
   }
 
@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.value);
+    console.log(this.state.photos);
     return (
 
       <div className="App">
@@ -50,7 +50,9 @@ class App extends Component {
           </form>
         </header>
         <p className="App-intro">
-          <img src="https://farm2.staticflickr.com/1845/30399125598_b4351b41d4.jpg" />
+          {this.state.photos.map((photo)=>
+            <img src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} />
+          )}
         </p>
       </div>
     );
