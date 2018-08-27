@@ -1,7 +1,36 @@
 body {
-  margin: 0;
+  margin: 10%;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Georgia, Times, Times New Roman, serif;
+}
+
+.-index-img-1EuPx7- {
+    /* object-fit: cover; */
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit]:hover {
+    background-color: #888888;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #505050;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 .-App-App-1GrMzY- {
   text-align: center;
@@ -31,8 +60,3 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
-/* img {
-    width: 100%;
-    height: auto;
-} */

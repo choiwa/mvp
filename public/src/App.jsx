@@ -34,7 +34,7 @@ class App extends Component {
         photoSet.push({
           src: imgSrc,
           width: randomWidth,
-          height: randomHeight,
+          height: randomWidth,
           title: photo.title,
         });
 
