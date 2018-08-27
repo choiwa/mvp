@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import $ from 'jquery';
+import Gallery from 'react-photo-gallery';
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +23,23 @@ class App extends Component {
 
   getPhotosURLs() {
     $.get('/api/photos', (data) => {
-      this.setState({photos: data});
+
+      var photoSet = [];
+
+      data.map((photo, i) => {
+        var imgSrc = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
+        photoSet.push({
+          src: imgSrc,
+          width: 1,
+          height: 1,
+        });
+//         {
+//   src: 'http://example.com/example/img1.jpg',
+//   width: 4,
+//   height: 3
+// },
+        this.setState({photos: photoSet});
+      });
     })
   }
 
@@ -78,9 +95,10 @@ class App extends Component {
           </form>
         </header>
         <p className="App-intro">
-          {this.state.photos.map((photo, i)=>
-            <img key={i} src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} />
-          )}
+
+
+
+          <Gallery photos={this.state.photos} />
         </p>
       </div>
     );
