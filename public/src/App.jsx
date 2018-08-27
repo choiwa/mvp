@@ -23,21 +23,21 @@ class App extends Component {
 
   getPhotosURLs() {
     $.get('/api/photos', (data) => {
+      console.log(data);
 
       var photoSet = [];
 
       data.map((photo, i) => {
+        var randomWidth = Math.floor(Math.random() * Math.floor(3)) + 1;
+        var randomHeight = Math.floor(Math.random() * Math.floor(3)) + 1;
         var imgSrc = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
         photoSet.push({
           src: imgSrc,
-          width: 1,
-          height: 1,
+          width: randomWidth,
+          height: randomHeight,
+          title: photo.title,
         });
-//         {
-//   src: 'http://example.com/example/img1.jpg',
-//   width: 4,
-//   height: 3
-// },
+
         this.setState({photos: photoSet});
       });
     })
@@ -78,11 +78,12 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.photos);
     return (
 
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Installations</h1>
+        <header>
+          <h1>Installations</h1>
           <form onSubmit={this.handleSubmit}>
             <label>
               <span> Search by brand, model or camera model name </span>
@@ -94,7 +95,7 @@ class App extends Component {
             </span>
           </form>
         </header>
-        <p className="App-intro">
+        <p>
 
 
 
