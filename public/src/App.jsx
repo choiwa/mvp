@@ -54,6 +54,10 @@ class App extends Component {
     } else {
       this.filterPhotos(this.state.photos, this.state.value);
     }
+    var thisValue = this.state.value;
+    console.log(thisValue);
+    $.post("/popularSearch", {search: this.state.value});
+
     this.setState({value: ""});
   }
 

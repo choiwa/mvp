@@ -26,7 +26,7 @@ const Flickr = require("flickrapi"),
             if (err) {
               console.log(err);
             } else {
-              console.log(result.sizes.size);
+              // console.log(result.sizes.size);
             }
           });
         }
@@ -34,13 +34,6 @@ const Flickr = require("flickrapi"),
                 callback(err, result);
 
       });
-
-
-
-
-
-
-
 
     });
 }
