@@ -92,6 +92,7 @@ class App extends Component {
             </span>
           </form>
         </header>
+          <p> {this.state.photos.length} image(s) selected</p>
           <Gallery photos={this.state.photos} />
       </div>
     );
