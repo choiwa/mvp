@@ -28,3 +28,8 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
+
+.image {
+  opacity: 0; transition: opacity 5s;}
+
+.image-loaded { opacity: 1; }

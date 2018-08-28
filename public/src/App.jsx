@@ -65,8 +65,6 @@ class App extends Component {
         filteredPhotos.push(photo);
       }
     }
-
-    console.log("filteredPhoto", filteredPhotos);
     this.setState({photos: filteredPhotos});
   }
 
@@ -75,9 +73,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.photos);
     return (
-
       <div className="App">
         <header>
           <h1>Installations</h1>
@@ -93,7 +89,7 @@ class App extends Component {
           </form>
         </header>
           <p> {this.state.photos.length} image(s) selected</p>
-          <Gallery photos={this.state.photos} />
+          <Gallery className="reloadFadeIn" photos={this.state.photos} />
       </div>
     );
   }

@@ -14,6 +14,7 @@ app.get("/api/photos", (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      // console.log(result.photos);
         res.send(result.photos.photo);
     }
   });

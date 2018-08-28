@@ -28,6 +28,11 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
+
+.-index-image-TlHiHq- {
+  opacity: 0; transition: opacity 5s;}
+
+.-index-image-loaded-1gyB60- { opacity: 1; }
 .-App-App-1GrMzY- {
   text-align: center;
 }
