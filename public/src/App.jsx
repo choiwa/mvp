@@ -23,18 +23,18 @@ class App extends Component {
 
   getPhotosURLs() {
     $.get('/api/photos', (data) => {
+      var photoSet = [];
       console.log(data);
 
-      var photoSet = [];
-
       data.map((photo, i) => {
-        var randomWidth = Math.floor(Math.random() * Math.floor(3)) + 1;
-        var randomHeight = Math.floor(Math.random() * Math.floor(3)) + 1;
+        var randomWidth = Math.floor(Math.random() * Math.floor(2)) + 1;
+        var randomHeight = Math.floor(Math.random() * Math.floor(2)) + 1;
+        console.log(randomWidth)
         var imgSrc = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
         photoSet.push({
           src: imgSrc,
-          width: randomWidth,
-          height: randomWidth,
+          width: 1,
+          height: 1,
           title: photo.title,
         });
 
@@ -46,16 +46,13 @@ class App extends Component {
   // submit the search to API
   handleSubmit(event) {
     event.preventDefault();
-    console.log("im triggled")
     if (this.state.value.length === 0) {
-      console.log("value's length === 0")
       this.getPhotosURLs();
       event.preventDefault();
     } else {
-      console.log("im working")
       this.filterPhotos(this.state.photos, this.state.value);
     }
-
+    this.setState({value: ""});
   }
 
   filterPhotos(photos, keywords) {
@@ -64,7 +61,7 @@ class App extends Component {
     for (let i = 0; i < photos.length; i++) {
       let photo = photos[i];
 
-      if (photo.title.includes(keywords)) {
+      if (photo.title.toLowerCase().includes(keywords.toLowerCase())) {
         filteredPhotos.push(photo);
       }
     }
@@ -86,21 +83,16 @@ class App extends Component {
           <h1>Installations</h1>
           <form onSubmit={this.handleSubmit}>
             <label>
-              <span> Search by brand, model or camera model name </span>
-
+              <span> Search by car brand, model, color or equipment name </span>
               <input type="text" value={this.state.value} onChange={this.handleChange} />
             </label>
             <span>
               <input type="submit" value="Go" />
+              <input type="submit" value="All Images"/>
             </span>
           </form>
         </header>
-        <p>
-
-
-
           <Gallery photos={this.state.photos} />
-        </p>
       </div>
     );
   }
