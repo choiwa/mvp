@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const getPhotosURLs = require('./getPhotos.js');
 const bodyParser = require('body-parser');
+const db = require('../database/index.js');
 
 var photos = 'im photos'
 
@@ -24,6 +25,13 @@ app.get("/api/photos", (req, res) => {
 
 app.post("/popularSearch", (req, res) => {
   console.log(req.body);
+  db.incrementSearch(req.body, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+    }
+  })
 })
 
 app.listen(3000, console.log("listing on port 3000"));
