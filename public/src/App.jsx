@@ -9,6 +9,7 @@ class App extends Component {
     this.state = {
       value: '',
       photos: [],
+      filteredPhotos: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,6 +40,7 @@ class App extends Component {
         });
 
         this.setState({photos: photoSet});
+        this.setState({filteredPhotos: []});
       });
     })
   }
@@ -65,7 +67,7 @@ class App extends Component {
         filteredPhotos.push(photo);
       }
     }
-    this.setState({photos: filteredPhotos});
+    this.setState({filteredPhotos: filteredPhotos});
   }
 
   handleChange(event) {
@@ -80,7 +82,7 @@ class App extends Component {
           <form onSubmit={this.handleSubmit}>
             <label>
               <span> Search by car brand, model, color or equipment name </span>
-              <input type="text" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="try toyota, white, touch screen, kenwood or reversing camera"/>
             </label>
             <span>
               <input type="submit" value="Go" />
@@ -88,8 +90,9 @@ class App extends Component {
             </span>
           </form>
         </header>
-          <p> {this.state.photos.length} image(s) selected</p>
-          <Gallery className="reloadFadeIn" photos={this.state.photos} />
+        {this.state.filteredPhotos.length === 0 ? <p> {this.state.photos.length} image(s) selected</p> : <p> {this.state.filteredPhotos.length} image(s) selected</p>}
+
+          {this.state.filteredPhotos.length === 0 ? <Gallery className="reloadFadeIn" photos={this.state.photos} /> : <Gallery className="reloadFadeIn" photos={this.state.filteredPhotos} />}
       </div>
     );
   }
